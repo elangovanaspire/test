@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- /** * Gama Locality Module Configuration * * @author Vignesh Sakthivel 
+	**/ -->
+<config>
+	<modules>
+		<Gama_Core>
+			<version>0.1.0.0</version>
+		</Gama_Core>
+	</modules>
+	<global>
+		<models>
+			<gama_core>
+				<class>Gama_Core_Model</class>
+				<resourceModel>locality_resource</resourceModel>
+			</gama_core>
+		</models>
+		<helpers>
+			<gama_core>
+				<class>Gama_Core_Helper</class>
+			</gama_core>
+		</helpers>
+		<api2>
+			<auth_adapters>
+				<session module="gama_core" translate="label">
+					<model>gama_core/auth_adapter_header</model>
+					<label>OAuth</label>
+					<enabled>1</enabled>
+					<order>10</order>
+				</session>
+			</auth_adapters>
+		</api2>
+	</global>
+</config>

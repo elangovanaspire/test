@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Gama_Menu>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Gama_Menu>
+    </modules>
+</config>

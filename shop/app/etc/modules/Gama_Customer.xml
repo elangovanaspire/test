@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Gama Customer Inital Config
+ *
+ * @author Vignesh Sakthivel
+**/ 
+-->
+<config>
+	<modules>
+		<Gama_Customer>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Gama_Customer>
+	</modules>
+</config>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<api2>
+		<resources>
+			<customer translate="title" module="Gama_Customer">
+				<group>customer</group>
+				<model>gama_customer/api2_customer</model>
+				<title>Customer</title>
+				<sort_order>10</sort_order>
+				<privileges>
+					<guest>
+						<create>1</create>
+					</guest>
+				</privileges>
+				<attributes>
+					<password>Password</password>
+					<confirmation>Confirm Password</confirmation>
+					<name>Name</name>
+                                        <email>Email</email> 
+                                        <mobile>Mobile</mobile> 
+				</attributes>
+				<routes>
+					<route_collection>
+						<route>/customer</route>
+						<action_type>collection</action_type>
+					</route_collection>
+				</routes>
+				<validators>
+					<fields>
+                                                <name>
+							<required>1</required>
+						</name>
+						<password>
+							<required>1</required>
+						</password>		
+						<confirmation>
+							<required>1</required>
+						</confirmation>
+						<email>
+							<required>1</required>
+							<emailaddress translate="message" module="api2">
+								<type>EmailAddress</type>
+								<message>Please use valid email address in "email" field.</message>
+							</emailaddress>
+						</email> 
+                                                <mobile>
+							<required>1</required>
+							<mobilenumber translate="message" module="api2">
+								<type>Int</type>
+								<message>Please use valid mobile number in "mobile" field.</message>
+							</mobilenumber>
+						</mobile>  											
+					</fields>
+				</validators>
+				<versions>1</versions>
+			</customer>
+		</resources>
+	</api2>
+</config>

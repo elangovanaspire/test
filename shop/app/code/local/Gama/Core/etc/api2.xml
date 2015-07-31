@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<api2>
+		<resource_groups>
+			<customer translate="title" module="Gama_Core">
+				<title>Customer</title>
+				<sort_order>10</sort_order>
+			</customer>
+		</resource_groups>
+		<resources>
+			<session translate="title" module="Gama_Core">
+				<group>customer</group>
+				<model>gama_core/api2_session</model>
+				<title>Session </title>
+				<sort_order>100</sort_order>
+				<privileges>
+					<guest>
+						<create>1</create>
+					</guest>
+					<customer>
+						<retrieve>1</retrieve>
+					</customer>					
+				</privileges>
+				<attributes>
+					<session_id>Session ID</session_id>
+					<user_name>User Name of the Customer</user_name>
+					<first_name>First Name of the Customer</first_name>
+					<last_name>Last Name of the Customer</last_name>
+					<user_id>ID of the Customer</user_id>
+					<password>Password of the Customer</password>
+					<mobile>Mobile Number of the Customer</mobile>
+				</attributes>
+				<routes>
+					<create>
+						<route>/customer/login</route>
+						<action_type>collection</action_type>
+					</create>
+					<route_entity>
+						<route>/customer/:session_id</route>
+						<action_type>entity</action_type>
+					</route_entity>
+				</routes>
+				<validators>
+					<fields>
+						<!--<user_name>
+							<required>1</required>
+							<emailaddress translate="message" module="api2">
+								<type>EmailAddress</type>
+								<message>Please use valid email address in "user_name" field.</message>
+							</emailaddress>
+							<mobilenumber translate="message" module="api2">
+								<type>Int</type>
+								<message>Please use valid mobile number in "mobile" field.</message>
+							</mobilenumber>
+						</user_name>-->
+						<password>
+							<required>1</required>
+						</password>						
+					</fields>
+				</validators>
+				<versions>1</versions>
+			</session>
+		</resources>
+	</api2>
+</config>

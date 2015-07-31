@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- /** * Gama Locality Admin Configuration * * @author Vignesh Sakthivel 
+	**/ -->
+<config>
+	<menu>
+		<locaity translate="title" module="gama_locality">
+			<title>Locality Management</title>
+			<sort_order>65</sort_order>
+			<children>
+				<city translate="title" module="gama_locality">
+					<title>City</title>
+					<action>adminhtml/city</action>
+					<sort_order>50</sort_order>
+				</city>
+				<pickup_points translate="title" module="gama_locality">
+					<title>Pickup Points</title>
+					<action>adminhtml/pickuppoints</action>
+					<sort_order>60</sort_order>
+				</pickup_points>
+                <pickup_point_request translate="title" module="gama_locality">
+					<title>Pickup Points Request</title>
+					<action>adminhtml/pickuppointrequest</action>
+					<sort_order>70</sort_order>
+				</pickup_point_request>
+			</children>
+		</locaity>
+	</menu>
+	
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<locality translate="title" module="gama_locality">
+						<title>Locality Management</title>
+						<sort_order>65</sort_order>
+						<children>
+							<city translate="title" module="gama_locality">
+								<title>City</title>
+								<sort_order>0</sort_order>
+								<childre>
+									<save translate="title">
+										<title>Save City</title>
+										<sort_order>0</sort_order>
+									</save>
+									<delete translate="title">
+										<title>Delete City</title>
+										<sort_order>0</sort_order>
+									</delete>									
+								</childre>
+							</city>
+							<pickup_points translate="title" module="gama_locality">
+								<title>Pickup Points</title>
+								<sort_order>0</sort_order>
+								<children>
+									<save translate="title">
+										<title>Save Pickup Point</title>
+										<sort_order>0</sort_order>
+									</save>
+									<delete translate="title">
+										<title>Delete Pickup Point</title>
+										<sort_order>0</sort_order>
+									</delete>									
+								</children>
+							</pickup_points>
+                            <pickup_point_request translate="title" module="gama_locality">
+								<title>Pickup Points Request</title>
+								<sort_order>0</sort_order>
+								<children>
+									<save translate="title">
+										<title>Save Pickup Point Request</title>
+										<sort_order>0</sort_order>
+									</save>
+									<delete translate="title">
+										<title>Delete Pickup Point Request</title>
+										<sort_order>0</sort_order>
+									</delete>									
+								</children>
+							</pickup_point_request>
+						</children>
+					</locality>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

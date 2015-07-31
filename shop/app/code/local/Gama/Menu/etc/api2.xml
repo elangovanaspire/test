@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <api2>
+        <resource_groups>
+            <catalog translate="title" module="api2">
+                <title>Menu</title>
+                <sort_order>10</sort_order>
+            </catalog>
+        </resource_groups>
+        <resources>
+            <category translate="title" module="api2">
+                <group>catalog</group>
+                <model>menu/api2_category</model>
+                <title>Categories</title>
+                <sort_order>10</sort_order>
+                <privileges>
+                    <admin>
+                        <retrieve>1</retrieve>
+                    </admin>
+                     <customer>
+                        <retrieve>1</retrieve>
+                    </customer>
+                     <guest>
+                        <retrieve>1</retrieve>
+                    </guest>
+                </privileges>
+                <attributes>
+                    <entity_id>Category ID</entity_id>
+                    <name>Name</name>
+                    <parent_id>Category Parent ID</parent_id>
+                    <is_active>Active</is_active>
+                    <level>Level</level>
+                    <position>Position</position>
+                    <children>Children Ids</children>
+                    <url_key>URL key</url_key>
+                    <store_id>Store ID</store_id>
+                    <custom_design_from>Custom Design From</custom_design_from>
+                    <custom_design_to>Custom Design To</custom_design_to>
+                    <image>Image</image>
+                    <openinghour>Opening Hour</openinghour>
+                    <openingminute>Opening Minute</openingminute>
+                    <closinghour>Closing Hour</closinghour>
+                    <closingminute>Closing Minute</closingminute>                  
+                </attributes>
+                <routes>
+                    <route_entity>
+                        <route>/categories/:id</route>
+                        <action_type>entity</action_type>
+                    </route_entity>
+                    <route_collection>
+                        <route>/categories</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                </routes>
+                <versions>1</versions>
+            </category>
+            <productattribute translate="title" module="api2">
+                <group>catalog</group>
+                <model>menu/api2_productattribute</model>
+                <title>Product Attributes</title>
+                <sort_order>10</sort_order>
+                <privileges>
+                    <admin>
+                        <retrieve>1</retrieve>
+                    </admin>   
+                     <customer>
+                        <retrieve>1</retrieve>
+                    </customer> 
+                     <guest>
+                        <retrieve>1</retrieve>
+                    </guest>                    
+                </privileges>
+                <attributes>
+                    <id>Name</id>
+                    <options>Options value/label</options>
+                </attributes>
+                <routes>
+                    <route_entity>
+                        <route>/productattribute/:id</route>
+                        <action_type>entity</action_type>
+                    </route_entity>
+                    <route_collection>
+                        <route>/productattribute</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                </routes>
+                <versions>1</versions>
+            </productattribute>
+             <subcategory translate="title" module="api2">
+                <group>catalog</group>
+                <model>menu/api2_subcategory</model>
+                <title>SubCategories</title>
+                <sort_order>10</sort_order>
+                <privileges>
+										 <admin>
+                        <retrieve>1</retrieve>
+                    </admin>
+                     <customer>
+                        <retrieve>1</retrieve>
+                    </customer>
+                     <guest>
+                        <retrieve>1</retrieve>
+                    </guest>                    
+                </privileges>
+                <attributes>
+                    <id>Name</id>
+                     <is_active>Active</is_active>
+                    <options>Options value/label</options>
+                </attributes>
+                <routes>
+                    <route_entity>
+                        <route>/subcategories/:id</route>
+                        <action_type>entity</action_type>
+                    </route_entity>
+                    <route_collection>
+                        <route>/subcategories</route>
+                        <action_type>collection</action_type>
+                    </route_collection>
+                </routes>
+                <versions>1</versions>
+            </subcategory>
+        </resources>
+    </api2>
+</config>

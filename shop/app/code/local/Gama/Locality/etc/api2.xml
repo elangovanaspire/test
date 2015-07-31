@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<api2>
+		<resource_groups>
+			<locality translate="title" module="Gama_Locality">
+				<title>Locality</title>
+				<sort_order>10</sort_order>
+			</locality>
+		</resource_groups>
+		<resources>
+			<pickuppoint translate="title" module="Gama_Locality">
+				<group>locality</group>
+				<model>gama_locality/api2_pickuppoint</model>
+				<title>Pickup Points</title>
+				<sort_order>10</sort_order>
+				<privileges>
+					<admin>
+						<retrieve>1</retrieve>
+					</admin>
+					<customer>
+						<retrieve>1</retrieve>
+					</customer>
+					<guest>
+						<retrieve>1</retrieve>
+					</guest>
+				</privileges>
+				<attributes>
+					<id>Pickup Point ID</id>
+					<name>Name</name>
+					<city_id>City ID</city_id>
+					<city_name>City Name</city_name>
+					<is_favourite>Is Pickup Point Favourite</is_favourite>
+				    <category1>Category1</category1>
+				    <bf_items>Category1 Items</bf_items>
+				    <category1_st>Category1 Start Time</category1_st>
+				    <category1_et>Category1 End Time</category1_et>
+				    <category2>Category2</category2>
+				    <lunch_items>Category2 Items</lunch_items>
+				    <category2_st>Category2 Start Time</category2_st>
+				    <category2_et>Category2 End Time</category2_et>
+				    <category3>Category3</category3>
+				    <dinner_items>Category3 Items</dinner_items>
+				    <category3_st>Category3 Start Time</category3_st>
+				    <category3_et>Category3 End time</category3_et>
+				    <category4>Category4</category4>
+				    <snacks_items>Category4 Items</snacks_items>
+				    <category4_st>Category4 Start Time</category4_st>
+				    <category4_et>Category4 End Time</category4_et>
+				</attributes>
+				<routes>
+					<route>
+						<route>/locality/pickuppoint/:city_id</route>
+						<action_type>collection</action_type>
+					</route>
+				</routes>
+				<versions>1</versions>
+			</pickuppoint>
+			<pickuppointrequest translate="title" module="Gama_Locality">
+				<group>locality</group>
+				<model>gama_locality/api2_pickuppointrequest</model>
+				<title>Pickup Point Request</title>
+				<sort_order>10</sort_order>
+				<privileges>
+                                        <admin>
+						<retrieve>1</retrieve>
+					</admin>
+					<customer>
+						<create>1</create>
+					</customer>
+					<guest>
+						<create>1</create>
+					</guest>
+				</privileges>
+				<attributes>
+                                        <id>Pickup Point Request ID</id>
+					<name>Name</name>
+					<mobile_no>Mobile No</mobile_no>
+					<city_id>City ID</city_id>
+				</attributes>
+				<routes>
+					<route>
+						<route>/locality/pickuppointrequest/</route>
+						<action_type>collection</action_type>
+					</route>
+				</routes>
+				<validators>
+					<fields>
+						<name>
+							<required>1</required>
+						</name>
+						<mobile_no>
+							<required>1</required>
+							<int translate="message" module="Gama_Locality">
+								<type>int</type>
+								<message>Please use valid mobile no in "mobile_no" field.</message>
+							</int>
+						</mobile_no>
+					</fields>
+				</validators>
+				<versions>1</versions>
+			</pickuppointrequest>
+			<pickuppointcategory translate="title" module="Gama_Locality">
+				<group>locality</group>
+				<model>gama_locality/api2_pickuppointcategory</model>
+				<title>Pickup Points categories</title>
+				<sort_order>10</sort_order>
+				<privileges>
+					<admin>
+						<retrieve>1</retrieve>
+					</admin>
+					<customer>
+						<retrieve>1</retrieve>
+					</customer>
+					<guest>
+						<retrieve>1</retrieve>
+					</guest>
+				</privileges>
+				<attributes>
+					<id>Pickup Point ID</id>
+					<name>Name</name>
+					<city_id>City ID</city_id>
+					<city_name>City Name</city_name>
+					<is_favourite>Is Pickup Point Favourite</is_favourite>
+					<active>Is Active</active>
+					  <cat_avail_from>Categories Available From</cat_avail_from>
+					  <cat_avail_to>Categories Available To</cat_avail_to>
+				    <category1>Category1</category1>
+				    <bf_items>Category1 Items</bf_items>
+				    <category1_st>Category1 Start Time</category1_st>
+				    <category1_et>Category1 End Time</category1_et>
+				    <category2>Category2</category2>
+				    <lunch_items>Category2 Items</lunch_items>
+				    <category2_st>Category2 Start Time</category2_st>
+				    <category2_et>Category2 End Time</category2_et>
+				    <category3>Category3</category3>
+				    <dinner_items>Category3 Items</dinner_items>
+				    <category3_st>Category3 Start Time</category3_st>
+				    <category3_et>Category3 End time</category3_et>
+				    <category4>Category4</category4>
+				    <snacks_items>Category4 Items</snacks_items>
+				    <category4_st>Category4 Start Time</category4_st>
+				    <category4_et>Category4 End Time</category4_et>
+				</attributes>
+				<routes>
+					<route_collection>
+						<route>/locality/pickuppointcategories/:pickuppoint_id</route>
+						<action_type>collection</action_type>
+					</route_collection>
+					<route_entity>
+						<route>/locality/pickuppointcategories/:pickuppoint_id/:cat_id</route>
+						<action_type>entity</action_type>
+					</route_entity>
+				</routes>
+				<versions>1</versions>
+			</pickuppointcategory>
+		</resources>
+	</api2>
+</config>

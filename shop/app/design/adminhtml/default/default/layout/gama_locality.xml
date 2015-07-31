@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout>
+	<adminhtml_city_index>
+		<reference name="content">
+			<block type="gama_locality/adminhtml_city" name="city" />
+		</reference>
+	</adminhtml_city_index>
+
+	<adminhtml_city_grid>
+		<block type="gama_locality/adminhtml_city_grid" name="root" />
+	</adminhtml_city_grid>
+
+	<adminhtml_city_new>
+		<update handle="adminhtml_city_edit" />
+	</adminhtml_city_new>
+
+	<adminhtml_city_edit>
+		<reference name="content">
+			<block type="gama_locality/adminhtml_city_edit" name="tag_edit"
+				template="city/edit/container.phtml"></block>
+		</reference>
+	</adminhtml_city_edit>
+
+
+	<adminhtml_pickuppoints_index>
+		<reference name="content">
+			<block type="gama_locality/adminhtml_pickuppoints" name="pickuppoints" />
+		</reference>
+	</adminhtml_pickuppoints_index>
+
+	<adminhtml_pickuppoints_grid>
+		<block type="gama_locality/adminhtml_pickuppoints_grid" name="root" />
+	</adminhtml_pickuppoints_grid>
+
+	<adminhtml_pickuppoints_new>
+		<update handle="adminhtml_pickuppoints_edit" />
+	</adminhtml_pickuppoints_new>
+
+	<adminhtml_pickuppoints_edit>
+		<reference name="content">
+			<block type="gama_locality/adminhtml_pickuppoints_edit" name="tag_edit"
+				template="pickuppoints/edit/container.phtml"></block>
+		</reference>
+	</adminhtml_pickuppoints_edit>
+        
+        <adminhtml_pickuppointrequest_index>
+		<reference name="content">
+			<block type="gama_locality/adminhtml_pickuppointrequest" name="pickuppointrequest" />
+		</reference>
+	</adminhtml_pickuppointrequest_index>
+
+	<adminhtml_pickuppointrequest_grid>
+		<block type="gama_locality/adminhtml_pickuppointrequest_grid" name="root" />
+	</adminhtml_pickuppointrequest_grid>
+
+	<adminhtml_pickuppointrequest_new>
+		<update handle="adminhtml_pickuppointrequest_edit" />
+	</adminhtml_pickuppointrequest_new>
+
+	<adminhtml_pickuppointrequest_edit>
+		<reference name="content">
+			<block type="gama_locality/adminhtml_pickuppointrequest_edit" name="tag_edit"
+				template="pickuppointrequest/edit/container.phtml"></block>
+		</reference>
+	</adminhtml_pickuppointrequest_edit>
+</layout>

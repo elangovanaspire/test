@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Gama Locality Inital Config
+ *
+ * @author Vignesh Sakthivel
+**/ 
+-->
+<config>
+	<modules>
+		<Gama_Core>
+			<active>true</active>
+			<codePool>local</codePool>
+			<depends>
+				<Mage_Api2 />
+			</depends>
+		</Gama_Core>
+	</modules>
+</config>

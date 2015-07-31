@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- /** * Gama Locality Module Configuration * * @author Vignesh Sakthivel 
+	**/ -->
+<config>
+	<modules>
+		<Gama_Locality>
+			<version>0.1.1.30</version>
+		</Gama_Locality>
+	</modules>
+	<global>
+		<models>
+			<directory>
+				<rewrite>
+					<country>Gama_Locality_Model_Country</country>
+				</rewrite>
+			</directory>
+			<gama_locality>
+				<class>Gama_Locality_Model</class>
+				<resourceModel>locality_resource</resourceModel>
+			</gama_locality>
+			<locality_resource>
+				<class>Gama_Locality_Model_Resource</class>
+				<entities>
+					<city>
+						<table>locality_city</table>
+					</city>
+					<pickuppoint>
+						<table>locality_pickup_point</table>
+					</pickuppoint>
+					<pickuppointrequest>
+						<table>locality_pickup_point_request</table>
+					</pickuppointrequest>					
+				</entities>
+			</locality_resource>
+		</models>
+		<helpers>
+			<gama_locality>
+				<class>Gama_Locality_Helper</class>
+			</gama_locality>
+		</helpers>
+		<blocks>
+			<gama_locality>
+				<class>Gama_Locality_Block</class>
+			</gama_locality>
+		</blocks>
+		<resources>
+			<gama_locality_setup>
+				<setup>
+					<module>Gama_Locality</module>
+					<class>Mage_Core_Model_Resource_Setup</class>
+				</setup>
+			</gama_locality_setup>
+		</resources>
+	</global>
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<Gama_Locality before="Mage_Adminhtml">Gama_Locality_Adminhtml</Gama_Locality>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+	<adminhtml>
+		<layout>
+			<updates>
+				<gama_locaity>
+					<file>gama_locality.xml</file>
+				</gama_locaity>
+			</updates>
+		</layout>
+	</adminhtml>
+</config>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- /** * Gama Locality Module Configuration * * @author Vignesh Sakthivel 
+	**/ -->
+<config>
+	<modules>
+		<Gama_Customer>
+			<version>2.1.7</version>
+		</Gama_Customer>
+	</modules>
+	<global>                 
+		<models>
+			<gama_customer>
+				<class>Gama_Customer_Model</class>
+				<resourceModel>locality_resource</resourceModel>
+			</gama_customer>
+		</models>
+		<helpers>
+			<gama_customer>
+				<class>Gama_Customer_Helper</class>
+			</gama_customer>
+		</helpers>                 
+               <!-- <resources>
+			<gama_customer_setup>
+				<setup>
+					<module>Gama_Customer</module>
+					<class>Mage_Core_Model_Resource_Setup</class>
+				</setup>
+			</gama_customer_setup>
+		</resources> -->
+                <resources>
+                    <gama_customer_setup>
+                        <setup>
+                            <module>Gama_Customer</module>                    
+                            <class>Gama_Customer_Model_Entity_Setup</class>
+                        </setup>                       
+                    </gama_customer_setup>
+                </resources> 
+                <fieldsets>
+                    <customer_account> 
+                        <mobile><create>1</create><update>1</update></mobile>
+                    </customer_account>
+                </fieldsets>                 
+	</global>
+</config>

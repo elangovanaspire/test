@@ -1,0 +1,48 @@
+<section  class="accordion-top-offset">
+    <div class="pick-up">
+        <p>Enjoy 5% discount on the bill amount by Bring Your Own Vessel (BYOV). <a href="#">Know More</a>
+        </p>
+        <form class="search-form">
+            <input type="text" ng-model="pickupPoint" ng-keypress="setPickupListDisplay(true)"
+                   placeholder="Search"/>
+            <input type="submit" value="&#xf002;" />
+            <table class="pickup-table">
+                <thead>
+                    <tr>
+                        <th>Pick-up Points</th>
+                        <th>Break Fast</th>
+                        <th>Lunch</th>
+                        <th>Dinner</th>
+                        <th>Snacks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="point in filtered = (pickUpList| filter:pickupPoint | 		    orderBy:is_favourite:reverse)">
+                        <td ng-click="selectFavouriteLocation($event)">{{point.name}}</td>
+                        <td> {{point.category1_st}} - {{point.category1_et}} </td>
+                        <td> {{point.category2_st}} - {{point.category2_et}} </td>
+                        <td> {{point.category3_st}} - {{point.category3_et}} </td>
+                        <td> {{point.category4_st}} - {{point.category4_et}} </td>
+                    </tr>
+                </tbody> 
+            </table>
+            <div class="ad-footer">
+                <img src="assets/images/ad-footer.jpg" alt="Footer Ad" />
+            </div> 
+        </form>
+    </div>
+
+    <!--<p>If your pick-up Point is not listed, please allow us to notify as
+      soon as we cover.</p>
+    <form class="notify-form">
+            <div ng-class="{'error': error, 'success': !error, 'info':'info'}" class="message" ng-show="message != null">{{message}}</div>
+      <div>
+        <input type="text" placeholder="Location - Pick–up Point" ng-model="newPickupPointRequest.name"/> <input
+          type="text" placeholder="Mobile Number" ng-model="newPickupPointRequest.mobile_no" />
+      </div>
+    
+      <div class="buttons">
+        <input type="submit" value="Notify Me" ng-click="requestNewPickupPoint();" /> 
+        <input type="submit" value="Skip" />
+      </div>
+    </form> -->

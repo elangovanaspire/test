@@ -1,0 +1,18 @@
+<div ui-view="content">
+  <form>     
+    <div class="menu-home" ng-if="dayWiseMenus"  ng-repeat="(day, dayList) in dayWiseMenus">
+        <h3 ng-if="dayList" ng-repeat="(key, dayMenu) in dayList" ng-model="day" >{{dayMenu.day}}</h3>
+        <p class="date" ng-if="dayList" ng-repeat="(key, dayMenu) in dayList" >{{dayMenu.date}}</p>
+        <ul ng-if="dayList" ng-repeat="(key, dayMenu) in dayList" > 
+            <li  ng-if="dayMenu" ng-repeat="(catkey, category) in dayMenu.menu" class="{{category.name | lowercase}}" >
+               <a href="javascript:void(0);" ng-model="category" ng-class="isTimesUp(dayMenu.day, category.end)" ng-click="getSubCategory(day, category.id, category.name)">{{category.name}}</a>               
+               <!-- <a href="#/submenu/{{category.id}}" ng-model="category" >{{category.name}}</a>                   
+              <a ui-sref="menu.submenu({ pickuppoint_id:dayMenu.pickuppointId, cat_id: category.id})" ng-model="category" >{{category.name}}</a>-->                         
+            </li>
+        </ul>
+    </div>
+</form> 
+<div class="pick-up-point-timing">
+   <a href="#/pickup" title="Pick-up Points and Timings">Pick-up Points and Timings</a>
+ </div>
+</div>

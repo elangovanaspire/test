@@ -1,0 +1,38 @@
+<section class="accordion-top-offset">
+    <div class="gama-form">
+        <div ng-class="{'error': errors, 'success': !error}" class="message" ng-show="messages != null" ng-repeat="message in messages">
+    	{{ message }}
+        </div>
+        <form ng-show="showRegisterForm">
+            <div>
+                <input type="text" ng-model="user.name" placeholder="User name">
+            </div>
+            <div>
+                <input type="text" ng-model="user.email" placeholder="Email">
+            </div>
+
+            <div>
+                <input type="text" ng-model="user.mobile" placeholder="Mobile Number">
+            </div>  
+            
+            <div>
+                <input type="password" ng-model="user.password" placeholder="Password">
+            </div>
+            <div>
+                <input type="password" ng-model="user.confirmation" placeholder="Confirm Password">
+            </div>  
+            <div>
+                Note: User can login either with his/her registered Email Id or Mobile Number.
+            </div>     
+                          
+            <div class="buttons">
+                <input type="submit" value="Register" ng-click="register()">
+            </div>
+
+        </form>
+        <div class="message success" ng-show="linktologin">Registration Successfully Completed 
+            <a href="#/login"> Click Here</a> to Login
+        </div>
+    </div>
+</section>
+

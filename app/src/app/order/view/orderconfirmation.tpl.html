@@ -1,0 +1,36 @@
+<div class="order-confirmation">
+    <ul>
+        <li>
+            <span>You have placed the order successfully. </span>
+            <span>
+                Your order ID:
+                <strong>GAMA{{orderDetails.entity_id}}</strong>
+            </span>
+        </li>
+        <li>We will call to your registered mobile number in 30 min to confirm. </li>
+        <li>
+            <span>
+                <strong>Delivery Address </strong>
+            </span>
+            <span>{{orderDetails.addresses.street}}</span>
+            <span>{{orderDetails.addresses.city}} - {{orderDetails.addresses.pincode}}</span>
+            <span>Phone: +91 {{orderDetails.addresses.telephone}}</span>
+        </li>
+        <li>
+            <span>
+                <strong>Delivery Time </strong>
+            </span>
+            <span>Wednesday, 12th Nov, 2014 at 7:00 AM </span>
+        </li>
+        <li>
+            <span>
+                <strong>Thank You</strong>
+            </span>
+            <span>GamaGamaa</span>
+        </li>
+    </ul>
+</div>
+<div class="stickyBtn">
+    <!--<a class="btn-yellow" href="menu"> Place Another Order</a>-->
+    <a class="btn-yellow" ui-sref="menu"> Place Another Order </a>
+</div>

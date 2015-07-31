@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html ng-controller="AppCtrl">
+<head>
+<title ng-bind="pageTitle"></title>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport"
+	content="width=100%; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no;" />
+
+<!-- compiled CSS -->
+
+<link rel="stylesheet" type="text/css" href="assets/gama-mobile-app-0.1.1.css" />
+
+
+<!-- compiled JavaScript -->
+
+<script type="text/javascript" src="vendor/angular/angular.js"></script>
+
+<script type="text/javascript" src="vendor/angular-mocks/angular-mocks.js"></script>
+
+<script type="text/javascript" src="vendor/angular-animate/angular-animate.js"></script>
+
+<script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+<script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+
+<script type="text/javascript" src="vendor/angular-route/angular-route.min.js"></script>
+
+<script type="text/javascript" src="vendor/ngstorage/ngStorage.min.js"></script>
+
+<script type="text/javascript" src="vendor/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript" src="src/app/app.js"></script>
+
+<script type="text/javascript" src="src/app/bootstrap.js"></script>
+
+<script type="text/javascript" src="src/app/customer/customer.js"></script>
+
+<script type="text/javascript" src="src/app/login/login.js"></script>
+
+<script type="text/javascript" src="src/app/menu/menu.js"></script>
+
+<script type="text/javascript" src="src/app/order/order.js"></script>
+
+<script type="text/javascript" src="src/app/pickup/pickup.js"></script>
+
+<script type="text/javascript" src="templates-common.js"></script>
+
+<script type="text/javascript" src="templates-app.js"></script>
+
+<script type="text/javascript" src="src/app/login/service/LoginService.js"></script>
+
+<script type="text/javascript" src="src/app/menu/service/MenuService.js"></script>
+
+<script type="text/javascript" src="src/app/customer/controller/RegisterController.js"></script>
+
+<script type="text/javascript" src="src/app/login/controller/LoginController.js"></script>
+
+<script type="text/javascript" src="src/app/menu/controller/CartController.js"></script>
+
+<script type="text/javascript" src="src/app/menu/controller/MenuController.js"></script>
+
+<script type="text/javascript" src="src/app/menu/controller/SubMenuController.js"></script>
+
+<script type="text/javascript" src="src/app/order/controller/OrderController.js"></script>
+
+<script type="text/javascript" src="src/app/pickup/controller/IndexController.js"></script>
+
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,300,600italic,400italic,300italic" rel="stylesheet" type="text/css" />
+
+</head>
+<body>    
+    <header>
+        <h1>
+            <a href="#/pickup" title="GamaGama">GamaGama</a>
+        </h1>
+        <nav>
+            <div>
+                <div style="float:left;" >
+                    <h2 class="title"  > 
+                    <span class="bredcrum-menu" ng-show="showBreadCrumb">
+                        <a href="#{{breadCrumbLink}}" title="Back"></a>
+                    </span>                  
+                    <span ng-bind="pageCaption"></span>
+                     </h2>
+                </div>
+                <div style="float:right;">
+                    <a href="javascript:void(0);" class="menu" title="Menu" ng-click="vis = !vis">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                    <a ng-if="showCart" ng-show="showCart" class="cart" title="Cart" ui-sref="menu.cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span >{{cartItemsCount}}</span>
+                    </a>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+           
+            <ul class="menu-list" ng-show="vis" ng-mouseleave="vis=false">
+                    <li class="profile-name" ><a title="Hi John" href="#">Hi {{loginUser}} ! </a></li>
+                    <li class="menus"><a href="#/menu" ng-click="vis = !vis" title="Menu"><i class="fa fa-book"></i>Menu</a></li>
+                    <li class="pick-up-point"> <a href="#/pickup" ng-click="vis = !vis" title="Pick-up Points &amp; Timings"><i class="fa fa-map-marker"></i>Pick-up Points &amp; Timings</a></li>
+                    <li class="byov"><a href="#" ng-click="vis = !vis" title="BYOV"><i class="fa fa-bitbucket"></i>BYOV</a></li>
+                    <li class="catering"><a href="#" ng-click="vis = !vis" title="Catering"><i class="fa fa-cutlery"></i>Catering</a></li>
+                    <li class="faq"><a href="#" ng-click="vis = !vis" title="FAQ"><i class="fa fa-question-circle"></i>FAQ</a></li>
+                    <li class="contact-us"><a href="#" ng-click="vis = !vis"  title="Contact Us"><i class="fa fa-mobile"></i>Contact Us</a></li>
+                    <li class="about-us"><a href="#" ng-click="vis = !vis" title="About Us"><i class="fa fa-info-circle"></i>About Us</a></li>
+                    <li class="sign-out" ng-if="showLogin"><a href="#/login" ng-click="vis = !vis" title="login">Login</a></li>
+                    <li class="sign-out" ng-if="showLogout"><a href="#" ng-click="logout()" title="Logout">Logout</a></li>  
+            </ul>
+        </nav>
+    </header>
+    <section class="content no-placeorder" ui-view="main"></section>
+    <footer ng-if="pageCaption=='Menus'">  
+        <ul class="social-links">
+            <li class="facebook"><a href="#"><span><i class="fa fa-facebook-square"></i></span>1500 Likes</a></li>
+            <li class="twitter"><a href="#"><span><i class="fa fa-twitter-square"></i></span>1500 Likes</a></li>
+            <li class="gplus"><a href="#"><span><i class="fa fa-google-plus-square"></i></span>1500 Likes</a></li>
+        </ul>
+    </footer>
+</body>
+</html>

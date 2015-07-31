@@ -1,0 +1,105 @@
+<div ui-view="content" >{{selectedDay}}
+    <div ng-if="subMenuItems" ng-repeat="(mkey, menuItems) in subMenuItems"  class="accordion-top-offset">    
+        <accordion close-others="true" id="accordion-panel">
+            <accordion-group  is-open="isopen" ng-repeat="(titleKey, itemTitle) in menuItems" ng-init="cIndex = $index" >
+                <accordion-heading > {{itemTitle.name}}
+                    <i class="pull-right glyphicon"  ng-class="{'glyphicon-chevron-up': isopen, 'glyphicon-chevron-down': !isopen}"></i>
+                </accordion-heading>
+                <div class="container" >                
+                    <div class="content"  >
+                        <ul class="combo-list">
+                            <li class="clearfix" ng-if="itemTitle.products" ng-repeat="(itemKey, items) in itemTitle.products" ng-init="productId = items.entity_id">
+                                <form name="productform" class="form-combo-select"  >
+                                    <div ng-init="pIndex = $index">
+                                        <div class="left-side">
+                                            <h3>{{items.name}} </h3>
+                                            <p>{{items.description}}</p>
+                                        </div>
+                                        <div class="right-side"  >
+                                            <div class="clearfix">
+                                                <span class="rate">₹ {{items.price|number:2}}</span>
+                                                <div class="counter-block" >
+                                                    <!--  <a ng-if="qty.count> 0" ng-click="qty.count=qty.count-1" class="minus">-</a>
+                                                           <span class="count">
+                                                                   <input ng-init="qty.count=0" type="text" ng-model="qty.count" value="{{qty.count}}" />
+                                                           </span>
+                                                           <a class="plus" ng-click="qty.count=qty.count+1">+</a>-->
+                                                    <a  ng-click="productQtyMinus(qty, cIndex, pIndex)" class="minus">-</a>
+                                                    <span class="count">
+                                                        <input type="text" ng-readonly="true" ng-init="qty[cIndex][pIndex]= (qty[cIndex][pIndex] > 0 ) ? qty[cIndex][pIndex] :0" ng-model="qty[cIndex][pIndex]" value="{{qty[cIndex][pIndex]}}" />
+                                                    </span>
+
+                                                    <a class="plus" ng-click="productQtyPlus(qty, cIndex, pIndex)" >+</a> 
+                                                </div>
+                                            </div>                                
+                                            <a ng-if="items.type_id != 'bundle'" href="javascript:void(0);" ng-click="addToCart('others', productId, qty[cIndex][pIndex], items, 0, 0, cIndex, pIndex)" class="make-my-combo-btn" title="Add to Cart">Add to Cart</a>
+                                            <a ng-if="items.type_id == 'bundle'" class="make-my-combo-btn" ng-hide="showme == productId" ng-click="getComboList(productId, qty, cIndex, pIndex)" title="Make My Combo" href="javascript:void(0);" >Make My Combo</a>
+                                        </div>
+                                        <div ng-show="showLoader{{pIndex}}"> <i class="fa fa-refresh fa-spin"></i></div>
+                                        <div class="clearfix clear combo-items" ng-if="items.type_id == 'bundle'" ng-show="showme == productId" >   <!-- combo products start -->
+
+                                            <img class="ComboImg" src="assets/images/combo-item.jpg">
+                                            <!-- <div class="most-popular-combos clearfix">
+                                                <a href="javascript:void(0);" title="Most Popular Combos" data-popup-target="#mostpopular-popup">Most Popular Combos</a>
+                                            </div> -->
+                                            <ul class="combo-selected-list"> 
+                                                <li ng-if="comboGroup" ng-repeat="(gkey, groupItems) in comboGroup" ng-init="cgIndex = $index">
+                                                    <div class="clearfix combo-wrap">
+                                                        <div class="combo-no" >														
+                                                            <span>{{ gkey + 1}}</span>
+                                                        </div>
+                                                        <div class="combo-content clearfix">
+                                                            <div class="combo-content-list">
+                                                                <p ng-repeat="groupItem in groupItems">{{groupItem|split:'~':0}} </p> 
+                                                            </div>
+                                                            <div class="combo-action"> <a ng-if="alcartaEditFlag" class="editIcon" ng-click="comboEdit(groupItems, gkey)" title="Edit" href="javascript:void(0);"><i class="fa fa-pencil"></i></a>                                
+                                                                <a class="deleteIcon" title="Delete" href="" ng-click="arrangeCombo($index, pIndex, cIndex, comboCount)">
+                                                                    <i class="fa fa-trash-o"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul> 
+
+
+                                            <div ng-if="comboalert"  class="message error" >{{comboalert}}</div>                                
+                                            <p class="ComboNumber"></p>
+                                            <label>Pick {{comboSize}} delicacies to make your Combo</label>
+                                            <div ng-if="comboItems.bundleItems" ng-repeat="(comboKey, comboOptions) in comboItems.bundleItems">
+                                                <select ng-disabled="isDisabled" ng-model="combos" ng-change="comboItemsSelected(combos, comboOptions, productId, cIndex, pIndex, comboKey)">
+                                                    <option value="">Pick any one item from the list</option>
+                                                    <option ng-if="comboOptions" ng-repeat="(ckey, cvalue) in comboOptions" value="{{cvalue.itemId}}" ng-selected='isSelected(ckey, cvalue.itemName)' >{{cvalue.itemQuantity| number:0}} {{cvalue.itemName}}</option>
+                                                </select>
+
+                                            </div>	
+
+                                            <div class="endureCombos">
+                                                <span><input type="checkbox" ng-model="applyRemainingCombo[cIndex][pIndex]" name="applyRemainingCombo" value="1">
+                                                    Apply same combination   
+                                                    <select ng-if="comboGroup.length > 1" id="remainingCombo"  ng-model="remainingComboItem[cIndex][pIndex]" >
+                                                        <option value="">Combo</option>
+                                                        <option ng-if="comboGroup" ng-repeat="(gkey, groupItems) in comboGroup"  value="{{gkey}}">{{gkey + 1}}</option>
+                                                    </select> to the remaining quantities</span>
+                                            </div>
+                                            <div class="combo-submit">
+                                                <span><a class="add-ons" ng-if="comboItems.addonGroupItems.length > 0" ng-click="open()" href="javascript:void(0);" title="Add-ons">Add-ons <i ng-if="addonCount > 0" >({{addonCount}})</i></a></span>
+                                                <span> <!--<button type="submit" class="add-to-cart" ng-disabled="productform.$invalid">Add to Cart</button>-->
+                                                    <a class="add-to-cart" href="javascript:void(0);" ng-click="addToCart('bundle', productId, qty[cIndex][pIndex], items, applyRemainingCombo[cIndex][pIndex], remainingComboItem[cIndex][pIndex], cIndex, pIndex)" title="Add to Cart" data-popup-target="#alert-popup">Add to Cart</a>                                                
+                                                    <!--<input class="add-to-cart"  title="Add to Cart" type="submit" ng-click="productValidate()" value="Add to Cart" />-->
+                                                    <a ng-click="hideComboList(qty, cIndex, pIndex);" class="cancel " href="javascript:void(0);" title="Cancel">Cancel</a></span>
+                                            </div>                               
+                                        </div><!-- combo products end -->  
+                                    </div>
+                                </form>
+                            </li>        
+                        </ul>
+                    </div>
+                </div>        
+            </accordion-group>
+        </accordion>
+    </div>
+    <div class="stickyBtn">
+        <a class="btn-yellow" ng-click="userAccountPopup()" href="javascript:void(0);">PLACE ORDER</a>
+    </div>
+</div>

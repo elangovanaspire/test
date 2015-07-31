@@ -1,0 +1,16 @@
+{
+  "name": "gama-mobile-app",
+  "version": "0.1.1",
+  "devDependencies": {
+    "angular": "~1.3.15",
+    "angular-mocks": "~1.3.15",
+    "angular-ui-router": "~0.2",
+    "bootstrap": "~3.3.2",
+    "angular-bootstrap": "~0.12.1",
+    "angular-animate": "~1.3.15",
+    "ngstorage": "~0.3.7",
+    "jquery": "~2.1.4",
+    "angular-route": "~1.4.3"
+  },
+  "dependencies": {}
+}

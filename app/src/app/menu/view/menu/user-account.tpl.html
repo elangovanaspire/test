@@ -1,0 +1,72 @@
+<div id="login-popup" class="popularCombos">
+
+<div class="popup-body">
+    <div class="popup-header">Login<span class="popup-exit" ng-click="cancel()"><i class="fa fa-times"></i></span></div>
+    <div class="popup-content">
+
+      <div class="GuestLogin"><a href="javascript:void(0);" ng-click="guestUser()" class="btn-yellow1">Continue as Guest</a></div>
+
+        <accordion close-others="true" id="accordion-panel">
+          <accordion-group  is-open="isopen">
+            <accordion-heading> Using GamaGamaa Account
+              <i class="pull-right glyphicon"  ng-class="{'glyphicon-chevron-up': isopen, 'glyphicon-chevron-down': !isopen}"></i>
+            </accordion-heading>
+
+            <div class="container">                
+              <div class="content">
+                <ul class="combo-list">
+                  <li class="clearfix">
+                    <div class="clearfix">
+                      <div ng-class="{'error': errors, 'success': !error}" class="message" ng-show="errorMessages != null" ng-repeat="message in errorMessages">
+                      {{ message }}
+                      </div>
+                      <form class="form-combo-select">
+                        <input type="text" class="form-control" ng-model="username" placeholder="Email ID/Mobile Number" />
+                        <input type="password" class="form-control" ng-model="password" placeholder="Password" />
+                        <label><input type="checkbox" />Remember me</label>
+                        <div class="btn-center">
+                          <a class="btn-yellow1" href="javascript:void(0);" ng-click="login(username,password)" title="Login">LOGIN</a>
+                        </div>
+                      </form>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>  
+          </accordion-group> 
+          <accordion-group>
+            <accordion-heading> Register with GamaGamaa
+               <i class="pull-right glyphicon"  ng-class="{'glyphicon-chevron-up': isopen, 'glyphicon-chevron-down': !isopen}"></i>
+            </accordion-heading>
+            <div class="container">                
+              <div class="content">
+                <ul class="combo-list">
+                  <li class="clearfix">
+                    <div class="clearfix">
+                      <div ng-class="{'error': errors, 'success': !error}" class="message" ng-show="errorMessages != null" ng-repeat="message in errorMessages">
+                      {{ message }}
+                      </div>
+                      <form class="form-combo-select" ng-show="showRegisterForm">
+                        <input type="text" class="form-control" ng-model="user.name" placeholder="Username" />
+                        <input type="text" class="form-control" ng-model="user.email" placeholder="Email" />
+                        <input type="text" class="form-control" ng-model="user.mobile" placeholder="Mobile Number" />
+                        <input type="password" class="form-control" ng-model="user.password" placeholder="Password" />
+                        <input type="password" class="form-control" ng-model="user.confirmation" placeholder="Confirm Password" />
+                        <div>
+                          Note: User can login either with his/her registered Email Id or Mobile Number.
+                        </div> 
+                        <div class="btn-center">
+                          <a class="btn-yellow1 top-offset" href="javascript:void(0);" ng-click="register(user)" title="Register">REGISTER</a>
+                        </div>
+                      </form>
+                      <div class="message success" ng-show="successMessage">Registration Successfully Completed</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>  
+            </div>
+          </accordion-group>
+        </accordion>
+      </div>
+</div>  
+</div> 

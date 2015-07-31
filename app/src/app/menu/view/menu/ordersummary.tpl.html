@@ -1,0 +1,134 @@
+<div ui-view="content">
+<section class="content">
+    <div class="ordersummary">
+      <ul class="combo-list order-final">
+
+        <li class="clearfix" ng-repeat="cartItem in cartItems" 
+        ng-init="cpIndex = $index">
+        <div class="left-side" ng-if="cartItem.productType == 'bundle'">
+          <h3>{{cartItem.productName}}</h3>
+          <ul class="combo-selected-list">
+            <li ng-if="comboGroup" ng-repeat="(gkey, groupItems) in cartItem.productComboGroupItems">
+              <div class="clearfix combo-wrap">
+                <div class="combo-no" >
+                  <span>{{ gkey + 1 }}</span>
+                </div>
+                <div class="combo-content clearfix">
+                  <div class="combo-content-list">
+                    <p ng-repeat="comboItem in groupItems">{{comboItem |split:'~':0}}</p>  
+                    <p ng-if="cartItem.productAddonDetails" ng-repeat="addon in cartItem.productAddonDetails">
+                    {{addon.addonProductId}} (Add-on)</p>
+                  </div>
+                </div>
+              </div>
+            </li> 
+          </ul>
+        </div>
+        <div class="left-side" ng-if="cartItem.productType !== 'bundle'">
+          <h3>{{cartItem.productName}}</h3>
+          <p>{{cartItem.productDetails.short_description}}</p>
+        </div>
+        <div class="right-side">
+          <div class="clearfix">
+            <span class="rate">₹ {{cartItem.productPrice| number:2}}</span>
+            <div class="counter-block">
+              <a ng-if="cartItem.productType !== 'bundle'" ng-click="cartQtyMinus(cpIndex, cartItem)" class="minus" >-</a>
+                <span class="count">
+                  <input type="text" ng-readonly="true" ng-init="cartQty[cpIndex]=cartItem. productQuantity" ng-model="cartQty[cpIndex]" ng-value="{{cartItem.productQuantity}}"value="{{cartItem.productQuantity}}" />
+                </span>
+                <a ng-if="cartItem.productType !== 'bundle'" ng-click="cartQtyPlus(cpIndex, cartItem)" class="plus" >+</a>
+            </div>
+          </div>
+          <div class="combo-action">
+            <a href="javascript:void(0);" ng-click="removeFromCart(cpIndex)" title="Delete" class="deleteIcon"><i class="fa fa-trash-o"></i></a>
+          </div>
+        </div>
+      </li>
+          <div class="clearfix clear">
+            <a title="Make My Combo" class="make-my-combo-btn" href="javascript:void(0);" ng-click="addMore()">+ Add More</a>
+          </div>
+
+        </li>
+      </ul>
+      <div class="order-pick-up">
+        <ul>
+          <li>
+            <div class="order-align">
+              <span class="PickupLabel">Pick-up Point</span>
+            </div>
+            <div class="AddressChange order-align-right">
+              <span class="AddressTo">{{pickupPointSelected}}</span> 
+              <span>-</span> 
+              <span class="Offset-10">07:00 AM</span>
+              <!-- <div>
+                <i ng-if="pickupPointSelected" class="fa fa-pencil edit-sm" ng-click="editPickupoint()"></i>
+              </div> -->
+              <div>
+                <select ng-if="showPickuppoint" ng-model="pickup" ng-change="changePickuppoint(pickup)">
+                  <option ng-repeat="pickuppoints in pickUpList" value="{{pickuppoints.name}}">{{pickuppoints.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="order-align">
+              <span>Date</span>
+            </div>
+              <p>{{showDate()}}</p>
+          </li>
+          <li ng-repeat="address in deliveryAddressData">
+            <div class="order-align">
+              <span>Address</span>
+            </div>
+            <div class="order-align-right">
+              <span>
+                {{address.address1}}
+              </span>
+              <span>
+                {{address.address2}}
+              </span>
+            </div>
+            <div class="order-align">
+              <span>Phone</span>
+            </div>
+            <div class="order-align-right">
+              <span>
+                <input type="text" value="+91" />
+                <input type="text" value="{{address.phone}}" class="PhoneNumberField"/>
+              </span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="clearfix">
+          <div class="check-wrap">
+            <input type="checkbox" ng-init="showBYOVOffer=true" ng-model="showBYOVOffer" ng-change="byovCalculate(showBYOVOffer)"/>
+          </div>
+          <label class="pink"><span>Get 5% off by Bringing Your Own Vessel (BYOV)</span><i class="question" title="Lorem ipsum dolor sit amet, consec"></i></label>
+        </div>
+        <div class="door-step clearfix">
+          <span>Would you like to get it delivered to your door step at an extra charge of ₹ 20?<i class="question" title="Lorem ipsum dolor sit amet, consec"></i></span>
+          <span>
+            <input id="toggle-yes" class="toggle toggle-left" name="toggle" value="true" type="radio" />
+            <label for="toggle-yes"  ng-click="deliveryAddressPopUp()">Yes</label>
+            <input id="toggle-no" class="toggle toggle-right" name="toggle" value="false" type="radio" checked />
+            <label for="toggle-no" ng-click="doorDelivery()">No</label>
+          </span>
+        </div>
+      </div>
+
+      <ul class="total-amount">
+        <li><span>Sub Total</span><span>{{getSubTotal() | currency: "₹"}}</span></li>
+        <li><span>Taxes</span><span>₹ 20.00</span></li>
+        <li ng-if="showBYOVOffer"><span>BYOV Offer</span><span>{{byov() | currency: "₹"}} </span></li>
+        <li ng-if="addExtraCharge"><span>Extra Charge</span><span>₹ 20.00</span></li>
+        <li><span>Total</span><span>{{getTotal() | currency: "₹"}} </span></li>
+      </ul>
+
+      <div class="stickyBtn">
+        <!--<a href="javascript:void(0);" class="btn-yellow">PLACE ORDER</a>-->
+         <a class="btn-yellow" ui-sref="order">PLACE ORDER</a>
+      </div>
+</section>
+</div>

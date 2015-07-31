@@ -1,0 +1,38 @@
+<div class="popularCombos" >
+    <div class="popup-body">
+        <form name="addonform">
+        <div class="popup-header">
+            Add-ons
+            <span class="popup-exit" ng-click="cancel()">
+                <i class="fa fa-times" ></i>
+            </span>
+        </div>
+        <div class="popup-content">
+            <ul class="add-ons-lists combo-list">
+                <li class="clearfix" ng-if="addonItems" ng-form="subform{{addonItemGroup.upSellProductGroupId}}" ng-repeat="(addonGroupKey, addonItemGroup) in addonItems">               
+                  <h4>{{addonItemGroup.upSellProductGroupName}}</h4>
+                    <div ng-if="addonItemGroup.upSellProductGroupItems" ng-repeat="(addonKey, addonItem) in addonItemGroup.upSellProductGroupItems">
+                        <div class="left-side">
+                            <h3>{{addonItem.addonItemName}}</h3>
+                        </div>
+                        <div class="right-side">                            
+                            <input type="radio"  ng-init="addonItemRadio[addonGroupKey][addonKey]=0" ng-model="addonItemRadio[addonGroupKey][addonKey]" ng-value="{{addonItem.addonItemId}}" value="{{addonItem.addonItemId}}" name="addonProduct{{addonItemGroup.upSellProductGroupId}}" ng-click="resetAddOnCount(addonItemGroup.upSellProductGroupId, addonQuantity, addonGroupKey, addonKey)" >
+                            <div class="counter-block">
+                                <a class="minus" ng-click="addOnQtyMinus(addonItemGroup.upSellProductGroupItems, addonQuantity, addonGroupKey, addonKey)">-</a>
+                                <span class="count" >
+                                    <input type="text" ng-readonly="true" ng-init="addonQuantity[addonGroupKey][addonKey]=0" name="addonQuantity{{addonItemGroup.upSellProductGroupId}}"  ng-model="addonQuantity[addonGroupKey][addonKey]" value="{{addonQuantity[addonGroupKey][addonKey]}}" />
+                                </span>
+                                <a class="plus" ng-click="addOnQtyPlus(addonItemGroup.upSellProductGroupItems, addonQuantity, addonGroupKey, addonKey)">+</a>
+                            </div>
+                            <span class="rate" ng-init="addonPrice[addonGroupKey][addonKey]=addonItem.addonItemPrice" ng-model="addonPrice[addonGroupKey][addonKey]">₹ {{addonItem.addonItemPrice| number:2}}</span>
+                        </div>
+                    </div>                  
+                </li>
+            </ul>
+        </div>
+        <div class="popup-footer">           
+             <a ng-click="addToCombo()" class="make-my-combo-btn add-to-combo" href="javascript:void(0);" title="Make My Combo">Add to Combo</a>
+        </div>
+    </form>
+    </div>
+</div>

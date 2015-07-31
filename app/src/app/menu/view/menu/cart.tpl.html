@@ -1,0 +1,50 @@
+<div ui-view="order">
+  <div ng-if="cartItems" class="accordion-top-offset">
+    <ul class="combo-list mycart">
+      <li class="clearfix" ng-repeat="(cartKey, cartItem) in cartItems" 
+        ng-init="cpIndex = $index">
+        <div class="left-side">
+          <h3>{{cartItem.productName}}</h3>
+          <p>{{cartItem.productDetails.short_description}}</p>
+        </div>
+        <div class="right-side">
+          <div class="clearfix">
+            <span class="rate">₹ {{cartItem.productPrice| number:2}}</span>
+            <div class="counter-block">
+              <a ng-click="cartQtyMinus(cpIndex, cartItem)" class="minus" >-</a>
+                <span class="count">
+                  <input type="text" ng-readonly="true" ng-init="cartQty[cpIndex]=cartItem. productQuantity" ng-model="cartQty[cpIndex]" ng-value="{{cartItem.productQuantity}}"value="{{cartItem.productQuantity}}" />
+                </span>
+                <a ng-click="cartQtyPlus(cpIndex, cartItem)" class="plus" >+</a>
+            </div>
+          </div>
+          <div class="combo-action">
+            <a ng-if="cartItem.productType=='bundle'" class="editIcon" ng-click="cartEdit(cartItem, qty, cartQty, cpIndex)" title="Edit" href="javascript:void(0);"><i class="fa fa-pencil"></i></a>
+            <a href="javascript:void(0);" ng-click="removeFromCart(cpIndex)" title="Delete" class="deleteIcon"><i class="fa fa-trash-o"></i></a>
+          </div>
+        </div>
+      </li>
+<!-- <li class="clearfix">
+  <div class="left-side">
+    <h3>Plain Dosa</h3>
+    <p>Lorem Ipsum is simply dummy text of the...</p>
+  </div>
+  <div class="right-side">
+    <div class="clearfix">
+      <span class="rate">₹ 70.00</span>
+      <div class="counter-block">
+        <a class="minus" href="#">-</a><span class="count"><input type="text" value="1" /></span><a class="plus" href="#">+</a>
+      </div>
+    </div>
+    <div class="combo-action">
+      <a href="#" title="Delete" class="deleteIcon"><i class="fa fa-trash-o"></i></a>
+    </div>
+  </div>
+</li> -->
+    </ul>
+    <div class="stickyBtn">
+      <!-- <a href="javascript:void(0);"  ng-click="orderSummary()">PLACE ORDER</a> -->
+      <a class="btn-yellow" ui-sref="menu.ordersummary">PLACE ORDER</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-controller="AppCtrl">
+<head>
+<title ng-bind="pageTitle"></title>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport"
+	content="width=100%; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no;" />
+
+<!-- compiled CSS -->
+<% styles.forEach( function ( file ) { %>
+<link rel="stylesheet" type="text/css" href="<%= file %>" />
+<% }); %>
+
+<!-- compiled JavaScript -->
+<% scripts.forEach( function ( file ) { %>
+<script type="text/javascript" src="<%= file %>"></script>
+<% }); %>
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,300,600italic,400italic,300italic" rel="stylesheet" type="text/css" />
+
+</head>
+<body>    
+    <header>
+        <h1>
+            <a href="#/pickup" title="GamaGama">GamaGama</a>
+        </h1>
+        <nav>
+            <div>
+                <div style="float:left;" >
+                    <h2 class="title"  > 
+                    <span class="bredcrum-menu" ng-show="showBreadCrumb">
+                        <a href="#{{breadCrumbLink}}" title="Back"></a>
+                    </span>                  
+                    <span ng-bind="pageCaption"></span>
+                     </h2>
+                </div>
+                <div style="float:right;">
+                    <a href="javascript:void(0);" class="menu" title="Menu" ng-click="vis = !vis">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                    <a ng-if="showCart" ng-show="showCart" class="cart" title="Cart" ui-sref="menu.cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span >{{cartItemsCount}}</span>
+                    </a>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+           
+            <ul class="menu-list" ng-show="vis" ng-mouseleave="vis=false">
+                    <li class="profile-name" ><a title="Hi John" href="#">Hi {{loginUser}} ! </a></li>
+                    <li class="menus"><a href="#/menu" ng-click="vis = !vis" title="Menu"><i class="fa fa-book"></i>Menu</a></li>
+                    <li class="pick-up-point"> <a href="#/pickup" ng-click="vis = !vis" title="Pick-up Points &amp; Timings"><i class="fa fa-map-marker"></i>Pick-up Points &amp; Timings</a></li>
+                    <li class="byov"><a href="#" ng-click="vis = !vis" title="BYOV"><i class="fa fa-bitbucket"></i>BYOV</a></li>
+                    <li class="catering"><a href="#" ng-click="vis = !vis" title="Catering"><i class="fa fa-cutlery"></i>Catering</a></li>
+                    <li class="faq"><a href="#" ng-click="vis = !vis" title="FAQ"><i class="fa fa-question-circle"></i>FAQ</a></li>
+                    <li class="contact-us"><a href="#" ng-click="vis = !vis"  title="Contact Us"><i class="fa fa-mobile"></i>Contact Us</a></li>
+                    <li class="about-us"><a href="#" ng-click="vis = !vis" title="About Us"><i class="fa fa-info-circle"></i>About Us</a></li>
+                    <li class="sign-out" ng-if="showLogin"><a href="#/login" ng-click="vis = !vis" title="login">Login</a></li>
+                    <li class="sign-out" ng-if="showLogout"><a href="#" ng-click="logout()" title="Logout">Logout</a></li>  
+            </ul>
+        </nav>
+    </header>
+    <section class="content no-placeorder" ui-view="main"></section>
+    <footer ng-if="pageCaption=='Menus'">  
+        <ul class="social-links">
+            <li class="facebook"><a href="#"><span><i class="fa fa-facebook-square"></i></span>1500 Likes</a></li>
+            <li class="twitter"><a href="#"><span><i class="fa fa-twitter-square"></i></span>1500 Likes</a></li>
+            <li class="gplus"><a href="#"><span><i class="fa fa-google-plus-square"></i></span>1500 Likes</a></li>
+        </ul>
+    </footer>
+</body>
+</html>

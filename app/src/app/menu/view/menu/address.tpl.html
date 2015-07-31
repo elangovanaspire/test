@@ -1,0 +1,20 @@
+<div class="popup-body">
+      <div class="popup-header">Delivery Address<span class="popup-exit" ng-click="cancel()"><i class="fa fa-times"></i></span></div>
+      <div class="popup-content" id="DeliveryAddres">
+        <ul class="combo-list">
+          <li class="clearfix">
+            <div class="clearfix">
+              <form class="form-combo-select">
+                <input type="text" class="form-control address1" placeholder="Enter Address Line 1"ng-model="address1"/>
+                <input type="text" class="form-control address2" placeholder="Enter Address Line 2" ng-model="address2"/>
+                <input type="text" class="form-control phonenum" placeholder="Phone Number" ng-model="phone"/>
+                <div class="btn-center">
+                  <a class="btn-yellow1 bottom-offset popup-exit1 Done" href="#" ng-click="deliveryAddress(address1,address2,phone)" title="Register">Done</a>
+                </div>
+              </form>
+            </div>
+          </li>
+        </ul>
+      </div>
+</div>
+ <div class="popup-overlay"></div>
